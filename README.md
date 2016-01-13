@@ -49,10 +49,10 @@ Limerence expect you to have all of your tests inside a directory called either 
 Limerence is very to use, and everything you type will feel natural. There are mainly four functions that are used in a test: `test()`, `describe()`, `it()` and `expect()`, and they are all used in conjunction to each other.
 
 #### `test()`
-The `test()` function defines the boundries of a test suite.
+The `test()` function defines the boundaries of a test suite.
 
 #### `describe()`
-The `describe()` function defines the boundries of a test case.
+The `describe()` function defines the boundaries of a test case.
 
 #### `it()`
 The `it()` function describes the expectation of the test.

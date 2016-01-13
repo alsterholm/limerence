@@ -1,5 +1,59 @@
 # Limerence
 
+## Testing
+
+Limerence is very to use, and everything you type will feel natural. There are mainly four functions that are used in a test: `test()`, `describe()`, `it()` and `expect()`, and they are all used in conjunction to each other.
+
+#### `test()`
+The `test()` function defines the boundaries of a test suite.
+
+#### `describe()`
+The `describe()` function defines the boundaries of a test case.
+
+#### `it()`
+The `it()` function describes the expectation of the test.
+
+#### `expect()`
+The `expect()` function makes the assertion.
+
+### Example
+
+**Dog.php**
+```php
+namespace App\Animals;
+
+class Dog
+{
+    public function makeSound()
+    {
+        return "Woof woof!";
+    }
+}
+```
+
+**dogTest.php**
+```php
+require 'vendor/autoload.php';
+
+use App\Animals\Dog;
+
+test('Dog model test', function () {
+    describe('function makeSound()', function () {
+        it('should make a barking sound', function () {
+            $dog = new Dog();
+
+            expect($dog)->to->have->method('makeSound');
+
+            $bark = $dog->makeSound();
+
+            expect($bark)->to->be->a('string');
+            expect($bark)->to->equal('Woof woof!');
+        });
+    });
+});
+
+```
+
 ## Assertions
 
 A wide variety of assertions is available with Limerence.
