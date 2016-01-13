@@ -214,8 +214,8 @@ test('/users', function () {
                     if ($err) return;
 
                     expect($res->body)->to->have->property('success');
-                    expect($res->body->error)->to->be->a('boolean');
-                    expect($res->body->error)->to->equal(true);
+                    expect($res->body->success)->to->be->a('boolean');
+                    expect($res->body->success)->to->equal(true);
 
                     expect($res->body)->to->have->property('users');
                     expect($res->body->users)->to->be->an('array');
