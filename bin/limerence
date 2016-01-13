@@ -35,6 +35,7 @@
  * @var string Default test directory
  */
 $DIR = "./tests";
+$AUTOLOAD = "./vendor/autoload";
 
 /**
  * Load filenames recursively.
@@ -66,7 +67,11 @@ if (file_exists($DIR) === false) {
     }
 }
 
-require './vendor/autoload.php';
+if (file_exists($AUTOLOAD) === false) {
+    exit("ERROR: You must install limerence locally by running \"composer require --dev limerence\".");
+}
+
+require $AUTOLOAD;
 
 $limerenceTestRunner = new \Limerence\Test\TestRunner();
 

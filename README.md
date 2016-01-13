@@ -6,7 +6,7 @@ Limerence is a [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development)/
 
 Installation through [Composer](https://getcomposer.org/) is recommended. To add Limerence to your project, simply run:
 
-    $ composer require-dev andreasindal/limerence
+    $ composer require --dev andreasindal/limerence
 
 And then, to run your tests, run:
 
