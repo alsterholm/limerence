@@ -35,7 +35,7 @@
  * @var string Default test directory
  */
 $DIR = "./tests";
-$AUTOLOAD = "./vendor/autoload";
+$AUTOLOAD = "./vendor/autoload.php";
 
 /**
  * Load filenames recursively.
