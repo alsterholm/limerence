@@ -1,0 +1,21 @@
+{
+    "name": "andreasindal/limerence",
+    "description": "A BDD-style testing framework for PHP.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Indal",
+            "email": "andreas@rocketship.se"
+        }
+    ],
+    "autoload": {
+        "files": [ "src/helpers.php" ],
+        "psr-4": {
+            "Limerence\\": "src/"
+        }
+    },
+    "bin": [ "bin/limerence" ],
+    "require": {
+        "php": ">=5.3.0"
+    }
+}

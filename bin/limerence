@@ -1,0 +1,79 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Limerence
+ * 
+ * BDD/TDD testing library for PHP.
+ * 
+ * Copyright (c) 2015 Andreas Indal
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * 
+ * @author Andreas Indal <andreas@rocketship.se>
+ * @copyright Andreas Indal <andreas@rocketship.se>
+ * @version 0.0.1
+ * @license MIT
+ */
+
+/**
+ * @var string Default test directory
+ */
+$DIR = "./tests";
+
+/**
+ * Load filenames recursively.
+ * 
+ * @param $path Base directory
+ * @return array
+ */
+function req($path) {
+    $files = array();
+
+    foreach (glob($path . '*', GLOB_MARK) as $filename) {
+        if ($filename !== $path) {
+            if (is_dir($filename)) {
+                $files = array_merge($files, req($filename));
+            } else if (substr($filename, strlen($filename) - 4) === '.php') {
+                $files[] = $filename;
+            }
+        }
+    }
+
+    return $files;
+}
+
+if (file_exists($DIR) === false) {
+    if (file_exists("./test")) {
+        $DIR = "./test";
+    } else {
+        exit("ERROR: Test directory could not be found.\n");
+    }
+}
+
+require './vendor/autoload.php';
+
+$limerenceTestRunner = new \Limerence\Test\TestRunner();
+
+$files = req($DIR);
+
+foreach ($files as $file) {
+    require $file;
+}
+
+$limerenceTestRunner->run();
